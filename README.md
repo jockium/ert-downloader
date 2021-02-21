@@ -17,14 +17,12 @@ python ert-downloader.py [url]
 
 για να κατεβάσετε ολόκληρα seasons, χρησιμοποιήστε για [url] το feed της σελίδας με τα επισόδεια,
 π.χ. https://www.ertflix.gr/category/paidika/zig-sharko/feed
-(στην πράξη, μπορείτε να προσθέσετε απλά το "/feed" σε οποιαδήποτε σελίδα με πολλαπλά thumbnails)
+(στην πράξη, μπορείτε να δοκιμάσετε να προσθέσετε απλά το "/feed" σε οποιαδήποτε σελίδα με πολλαπλά thumbnails)
 
 Παράδειγμα
 =======
 
 python ert-downloader.py https://webtv.ert.gr/xxxxxxxxxx/
-
-
 
 Απαιτήσεις
 ============
@@ -55,7 +53,7 @@ Usage
 
 python ert-downloader.py [url]
 
-to download whole seasons or collections, use the feed for the page with said season/collection as the [url]
+To download whole series or collections, use the feed for the page with said series/collection as the [url]
 i.e. https://www.ertflix.gr/category/paidika/zig-sharko/feed
 (actually, you can try adding "/feed" to the url of any page with multiple thumbnails)
 
