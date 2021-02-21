@@ -31,21 +31,23 @@ def create_parts_txt(chunklist):
     file.close()
 
 def clean_junk():
-    shutil.rmtree("download_parts")
+    if os.path.exists('download_parts'):
+        shutil.rmtree("download_parts")
 
 def download(stream_data):
-    stream_url = stream_data["stream_url"]
-    chunklist = stream_data["chunklist"]
-    create_parts_txt(chunklist)
     title = stream_data["title"]
-    print("DOWNLOADING:{}".format(title))
-    download_list = generate_download_list(stream_url, chunklist)
-    pool = ThreadPool(5)
-    pool.map(download_process, download_list)
-    pool.close()
-    pool.join()  # waiting for the downloads to complete
-    os.system(('ffmpeg -f concat -i download_parts/parts -acodec copy -vcodec copy "{}//{}.mp4"'.format(os.getcwd(), title)))
+    if os.path.exists( "{}//DLs//{}.mp4".format(os.getcwd(), title)):
+        print("FILE EXISTS, SKIPPING:{}//DLs//{}.mp4".format(os.getcwd(), title))
+    else:
+        stream_url = stream_data["stream_url"]
+        chunklist = stream_data["chunklist"]
+        create_parts_txt(chunklist)
+        print("DOWNLOADING:{}".format(title))
+        download_list = generate_download_list(stream_url, chunklist)
+        pool = ThreadPool(5)
+        pool.map(download_process, download_list)
+        pool.close()
+        pool.join()  # waiting for the downloads to complete
+        os.system(('ffmpeg -f concat -i download_parts/parts -acodec copy -vcodec copy "{}//DLs//{}.mp4"'.format(os.getcwd(), title)))
+
     clean_junk()
-
-
-
